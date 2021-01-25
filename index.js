@@ -4,7 +4,6 @@ let server = require('http').createServer(app);
 let io = require('socket.io')(server);
 const fs = require('fs');
 const file = 'task-data.json';
-const baseData = [{ "name": "office", "data": [] }, { "name": "work", "data": [] }, { "name": "personal", "data": [] }];
 
 app.use(cors());
 
@@ -18,7 +17,7 @@ function writeDataToFile(dataStore) {
 
 function readDataFromFile() {
     if (!fs.existsSync(file)) {
-        writeDataToFile(baseData);
+        writeDataToFile(null);
     }
     let rawdata = fs.readFileSync(file);
     return JSON.parse(rawdata);
