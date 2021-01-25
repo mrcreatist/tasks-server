@@ -10,7 +10,10 @@ app.use(cors());
 
 function writeDataToFile(dataStore) {
     let data = JSON.stringify(dataStore);
-    fs.writeFileSync(file, data);
+    console.log(data);
+    if (data && data.length) {
+        fs.writeFileSync(file, data);
+    }
 }
 
 function readDataFromFile() {
